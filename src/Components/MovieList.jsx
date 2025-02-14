@@ -13,14 +13,18 @@ export const MovieList = () => {
             const result= await fetch(url,{
                 method: 'GET'
             })
+            
             const data= await result.json()
+            console.log(url)
+            console.log(data)
             setMovie(data)
             
         }
        
 
         const deleteMovies = async (movie_id)=>{
-            const url=`${baseUrl}${endpoint}`
+            const id= `${endpoint}/${movie_id}`
+            const url=`${baseUrl}${id}`
             const result= await fetch(url,{
                method: "DELETE" 
             })
@@ -46,16 +50,16 @@ export const MovieList = () => {
                 </tr>
             </thead>
             <tbody>
-                {movie.map((item)=>{
+                {movie.map((item)=>(
                     <tr key= {item.movie_id}>
                         <td>{item.title}</td>
                         <td>{item.release_year}</td>
                         <td>{item.genre}</td>
                         <td>{item.duration}</td>
-                        <td><button class="btn btn-warning" onClick={()=>{deleteMovies(item.movie_id)}}> Delete
+                        <td><button className="btn btn-warning" onClick={()=>{deleteMovies(item.movie_id)}}> Delete
                             </button> </td>
                     </tr>
-                })
+                ))
                 
                 }
             </tbody>
