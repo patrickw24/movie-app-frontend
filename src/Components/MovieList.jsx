@@ -45,7 +45,7 @@ export const MovieList = () => {
                     <th>Title</th>
                     <th>Release Year</th>
                     <th>Genre</th>
-                    <th>Duration (minutes)</th>
+                    <th>Duration (Minutes)</th>
                     <th>Delete</th>
                 </tr>
             </thead>

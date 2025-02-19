@@ -7,6 +7,7 @@ export const AddMovieForm = () => {
     const [release_year, setRelease_year] = useState()
     const [genre, setGenre] = useState()
     const [duration, setDuration] = useState()
+    const [resultOperation, setResult] = useState("")
 
     const getTitle = (event)=>{
       setTitle(event.target.value)
@@ -25,7 +26,7 @@ export const AddMovieForm = () => {
     }
 
     const onSubmitHandler = async ()=>{
-
+        event.preventDefault()
       const baseUrl= import.meta.env.VITE_BASE_URL
       const endpoint= "/movie"
 
@@ -48,14 +49,33 @@ export const AddMovieForm = () => {
         body: JSON.stringify(tmp)
       })
 
+      const data = await results.json()
 
+      if (results.status === 500) {
+
+          setResult("Data base error")
+
+
+      } else {
+
+          console.log(data.message)
+          setResult(data.message)
+
+
+      }
+
+      setTimeout(() => {
+          window.location = "/"
+      }, 5000)
      
     }
 
 
   return (
     <>
-    <form onSubmit={onSubmitHandler}>
+    <h1 className='display-1 text-center'>Add Movies</h1>
+    <div className='container mt-3'>
+    <form onSubmit={onSubmitHandler} className='mb-4'>
   <div className="mb-3">
     <label  className="form-label">Title</label>
     <input type="text" onChange={getTitle} className="form-control"/>
@@ -69,12 +89,14 @@ export const AddMovieForm = () => {
     <input type="text" onChange={getGenre} className="form-control"/>
     </div>
     <div className="mb-3">
-    <label  className="form-label">Duration</label>
-    <input type="text" onChange={getDuration} className="form-control"/>
+    <label  className="form-label">Duration (Minutes)</label>
+    <input type="number" onChange={getDuration} className="form-control"/>
     </div>
 
-  <button type="submit" className="btn btn-primary">Submit</button>
+  <button type="submit" className="btn btn-primary w-100">Submit</button>
 </form>
+<p className ="text-primary display-4" >{resultOperation}</p>
+</div>
     </>
   )
 }
