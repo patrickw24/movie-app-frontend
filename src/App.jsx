@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { ActorScreen } from './ScreenComponents/ActorScreen'
 import { Earnings } from './ScreenComponents/Earnings'
 import { MovieScreen } from './ScreenComponents/MovieScreen'
+import { LogIn } from './ScreenComponents/LogIn'
 
 
 function App() {
@@ -14,7 +15,8 @@ function App() {
     <>
     <BrowserRouter>
     <Routes>
-      <Route path="/" element={<MovieScreen/>}/> 
+      <Route path="/" element={<LogIn/>}/> 
+      <Route path="/movies" element={<MovieScreen/>}/> 
       <Route path="/actors" element={<ActorScreen/>}/> 
       <Route path="/earnings" element={<Earnings/>}/> 
     </Routes>
