@@ -3,39 +3,42 @@ import { useState } from 'react';
 
 export const LogInForm = () => {
 
-    const [password, setPassword] = useState("")
-    const [email, setEmail] = useState("")
 
+    const [formData, setFormData] = useState({
+        password: "", 
+        email : ""
+    })
 
     const baseUrl = import.meta.env.VITE_BASE_URL
 
 
-    const changeHandlerEmail = (event)=>{
-        setEmail(event.target.value)
+    const onChangeHandler = (event) => {
+        const property = event.target.name
+        const value = event.target.value
+        const tmpObject = formData
+        tmpObject[property] = value
+        setFormData(tmpObject)
     }
 
-    const changeHandlerPassword = (event)=>{
-        setPassword(event.target.value)
+    const register=()=>{
+
+        window.location.href="/register"
     }
 
     const submitHandler = async ()=>{
 
         event.preventDefault()
 
-        const endPoint = 'auth/logIn'
+        const endPoint = '/auth/login'
         const newUrl = `${baseUrl}${endPoint}`
 
-        const data = {
-            password, 
-            email
-        }
 
         const response = await fetch(newUrl, {
             method: "POST",
             headers: {
                 'Content-Type' : 'application/json'
             } ,
-            body : JSON.stringify(data)
+            body : JSON.stringify(formData)
         })
 
         if(response.ok){
@@ -43,7 +46,7 @@ export const LogInForm = () => {
             const token = result.token
             
             window.localStorage.setItem("movie-credential", token)
-            window.location.href="/dashboard"
+            window.location.href="/movies"
             
         }else{
             console.log("Invalid Credential")
@@ -58,7 +61,7 @@ export const LogInForm = () => {
 
     return (
         <>
-            <div className='logForm'>
+            <div className='parent'>
                 <div className="card bg-light mb-3" style={{ maxWidth: "400px" }}>
                     <div className="card-header">Log In</div>
                     <div className="card-body">
@@ -66,12 +69,12 @@ export const LogInForm = () => {
                         <form onSubmit={submitHandler}>
                             <div>
                                 <label className="form-label mt-4">Email</label>
-                                <input type="email" className="form-control" onChange={changeHandlerEmail} />
+                                <input type="email" name ="email" className="form-control" onChange={onChangeHandler} />
                             </div>
 
                             <div>
                                 <label className="form-label mt-4">Password</label>
-                                <input type="password" className="form-control" onChange={changeHandlerPassword} />
+                                <input type="password" name="password" className="form-control" onChange={onChangeHandler} />
                             </div>
 
                             <div className='row mt-3'>
@@ -79,7 +82,7 @@ export const LogInForm = () => {
                                     <button className='btn btn-primary w-100'>Log In</button>
                                 </div>
                                 <div className='col'>
-                                    <button type='button' className='btn btn-primary w-100'>Sign In</button>
+                                    <button  onClick={register} type='button' className='btn btn-primary w-100'>Sign In</button>
                                 </div>
                             </div>
                         </form>
