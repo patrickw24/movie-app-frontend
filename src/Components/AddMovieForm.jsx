@@ -27,6 +27,7 @@ export const AddMovieForm = () => {
 
     const onSubmitHandler = async ()=>{
         event.preventDefault()
+        const token = localStorage.getItem("movie-credential")
       const baseUrl= import.meta.env.VITE_BASE_URL
       const endpoint= "/movie"
 
@@ -43,7 +44,8 @@ export const AddMovieForm = () => {
 
       const results = await fetch(url,{
         method: 'POST',
-        headers: {
+          headers: {
+            'Authorization': token,
           'Content-Type' : 'application/json'
         },
         body: JSON.stringify(tmp)
@@ -65,7 +67,7 @@ export const AddMovieForm = () => {
       }
 
       setTimeout(() => {
-          window.location = "/"
+          window.location = "/movie"
       }, 5000)
      
     }
