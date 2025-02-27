@@ -46,7 +46,7 @@ export const LogInForm = () => {
             const token = result.token
             
             window.localStorage.setItem("movie-credential", token)
-            window.location.href="/movies"
+            window.location.href="/movie"
             
         }else{
             console.log("Invalid Credential")
@@ -82,7 +82,7 @@ export const LogInForm = () => {
                                     <button className='btn btn-primary w-100'>Log In</button>
                                 </div>
                                 <div className='col'>
-                                    <button  onClick={register} type='button' className='btn btn-primary w-100'>Sign In</button>
+                                    <button  onClick={register} type='button' className='btn btn-primary w-100'>Register Account</button>
                                 </div>
                             </div>
                         </form>

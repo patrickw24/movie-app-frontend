@@ -22,10 +22,10 @@ export const Menu = () => {
                         <ul className="navbar-nav me-auto">
 
                             <li className="nav-item">
-                                <a className="nav-link" href="/cast">Cast</a>
+                                <a className="nav-link" href="/actor">Cast</a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="/movies">Movies</a>
+                                <a className="nav-link" href="/movie">Movies</a>
                             </li>
                             <li className="nav-item">
                                 <a className="nav-link" href="/earnings">Earnings</a>

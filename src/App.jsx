@@ -51,8 +51,8 @@ function App() {
     <Routes>
       <Route path="/" element={<LogIn/>}/> 
       { !isLogIn ? <Route path='/register' element={<Register />} /> : ""  } 
-      <Route path="/movies" element={<MovieScreen/>}/> 
-      <Route path="/actors" element={<ActorScreen/>}/> 
+      { isLogIn ? <Route path="/movie" element={<MovieScreen/>}/> : ""  }  
+      <Route path="/actor" element={<ActorScreen/>}/> 
       <Route path="/earnings" element={<Earnings/>}/> 
     </Routes>
     </BrowserRouter>

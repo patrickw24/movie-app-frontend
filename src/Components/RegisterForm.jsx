@@ -27,8 +27,10 @@ export const RegisterForm = () => {
 
         event.preventDefault()
 
-        const endPoint = 'auth/register'
+        const endPoint = '/auth/register'
         const newUrl = `${baseUrl}${endPoint}`
+
+        console.log(newUrl)
 
         const response = await fetch(newUrl, {
             method: "POST",
@@ -51,6 +53,10 @@ export const RegisterForm = () => {
             setNotification(errMessage.error)
         }
 
+    }
+
+    const loginButton = ()=>{
+        window.location.href = "/"
     }
 
     return (
@@ -87,7 +93,7 @@ export const RegisterForm = () => {
                                     <button className='btn btn-primary w-100'>Create</button>
                                 </div>
                                 <div className='col'>
-                                    <button type="button" className='btn btn-primary w-100'>Log In</button>
+                                    <button onClick={loginButton} type="button" className='btn btn-primary w-100'>Log In</button>
                                 </div>
                             </div>
                         </form>
