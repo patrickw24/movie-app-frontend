@@ -9,9 +9,15 @@ export const EarningsList = () => {
         const [earnings, setEarnings] = useState([])
         
         const getEarnings = async () => {
+
             const url =`${baseUrl}${endpoint}`
+            console.log(url)
+            const token = localStorage.getItem("movie-credential")
             const result= await fetch(url,{
-                method: 'GET'
+                method: 'GET',
+                headers: {
+                    'Authorization': token
+                }
             })
             
             const data= await result.json()

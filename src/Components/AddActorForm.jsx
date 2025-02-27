@@ -49,7 +49,7 @@ export const AddActorForm = () => {
     }
 
     setTimeout(() => {
-      window.location = "/actors";
+      window.location = "/actor";
     }, 5000);
   };
 

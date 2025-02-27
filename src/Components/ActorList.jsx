@@ -9,9 +9,14 @@ export const ActorList = () => {
       const [actor, setActor] = useState([])
   
       const getActors = async () => {
+
+        const token = localStorage.getItem("movie-credential")
         const url =`${baseUrl}${endpoint}`
         const result= await fetch(url,{
-            method: 'GET'
+            method: 'GET',
+            headers: {
+                'Authorization': token
+            }
         })
         
         const data= await result.json()
