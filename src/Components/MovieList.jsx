@@ -9,7 +9,7 @@ export const MovieList = () => {
 
   const getMovies = async () => {
     const token = localStorage.getItem("movie-credential");
-    console.log(token);
+    
     const url = `${baseUrl}${endpoint}`;
     const result = await fetch(url, {
       method: "GET",
@@ -26,9 +26,13 @@ export const MovieList = () => {
 
   const deleteMovies = async (movie_id) => {
     const id = `${endpoint}/${movie_id}`;
+    const token = localStorage.getItem("movie-credential")
     const url = `${baseUrl}${id}`;
     const result = await fetch(url, {
       method: "DELETE",
+      headers: {
+        'Authorization': token
+      }
     });
     getMovies();
   };

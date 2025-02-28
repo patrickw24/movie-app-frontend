@@ -1,7 +1,11 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 
+
 export const EarningsList = () => {
+
+    const [resultOperation, setResult] = useState("")
+   
 
  const baseUrl= import.meta.env.VITE_BASE_URL
         const endpoint= "/earnings"
@@ -11,7 +15,7 @@ export const EarningsList = () => {
         const getEarnings = async () => {
 
             const url =`${baseUrl}${endpoint}`
-            console.log(url)
+           
             const token = localStorage.getItem("movie-credential")
             const result= await fetch(url,{
                 method: 'GET',
@@ -21,8 +25,7 @@ export const EarningsList = () => {
             })
             
             const data= await result.json()
-            console.log(url)
-            console.log(data)
+           
             setEarnings(data)
             
         }
@@ -30,11 +33,31 @@ export const EarningsList = () => {
 
         const deleteEarnings = async (movie_id)=>{
             const id= `${endpoint}/${movie_id}`
+            const token = localStorage.getItem("movie-credential")
             const url=`${baseUrl}${id}`
-            const result= await fetch(url,{
-               method: "DELETE" 
+            const response= await fetch(url,{
+               method: "DELETE",
+               headers: {
+                'Authorization': token
+               }
             })
             getEarnings()
+        
+            const data = await response.json()
+            if (response.status === 500) {
+
+                setResult("Data base error")
+      
+      
+            } else {
+      
+                
+                setResult(data.message)
+      
+      
+            }
+
+           
         }
 
         useEffect(()=>{
@@ -48,17 +71,21 @@ export const EarningsList = () => {
         <thead>
             <tr>
                 <th>Movie ID</th>
+                <th>Title</th>
                 <th>Country</th>
                 <th>Revenue (Thousand)</th>
             </tr>
         </thead>
         <tbody>
             {earnings.map((item)=>(
-                <tr key= {item.earnings_id}>
+                <tr key= {item.movie_id}>
                     <td>{item.movie_id}</td>
+                    <td>{item.title}</td>
                     <td>{item.country}</td>
                     <td>{item.revenue}</td>
-                    <td><button className="btn btn-warning" onClick={()=>{deleteEarnings(item.earnings_id)}}> Delete
+                    <td><button className="btn btn-warning" onClick={() => {
+                    deleteEarnings(item.movie_id);
+                  }}> Delete
                         </button> </td>
                 </tr>
             ))
@@ -67,6 +94,8 @@ export const EarningsList = () => {
         </tbody>
 
     </table>
+    <p className ="text-primary display-4" >{resultOperation}</p>
+
 
 </>
   )

@@ -28,9 +28,13 @@ export const ActorList = () => {
 
             const deleteActor = async (actor_id)=>{
                 const id= `${endpoint}/${actor_id}`
+                const token = localStorage.getItem("movie-credential")
                 const url=`${baseUrl}${id}`
                 const result= await fetch(url,{
-                   method: "DELETE" 
+                   method: "DELETE",
+                   headers: {
+                    'Authorization': token
+                   }
                 })
                 getActors()
             }
