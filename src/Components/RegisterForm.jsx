@@ -12,6 +12,7 @@ export const RegisterForm = () => {
     })
 
     const [notification, setNotification] = useState("")
+    
 
     const baseUrl = import.meta.env.VITE_BASE_URL
 
@@ -27,6 +28,11 @@ export const RegisterForm = () => {
 
         event.preventDefault()
 
+        if (!formData.email || !formData.password || !formData.name || !formData.lastName) {
+            setNotification("All fields are required.");
+            return;
+        }
+
         const endPoint = '/auth/register'
         const newUrl = `${baseUrl}${endPoint}`
 
@@ -40,6 +46,7 @@ export const RegisterForm = () => {
             body: JSON.stringify(formData)
         })
 
+        
         if (response.ok) {
             setNotification("User was created")
 
