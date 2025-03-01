@@ -68,15 +68,13 @@ function App() {
           <Route path="/" element={<LogIn />} />
           <Route path="/register" element={<Register />} />
           
-          {isLogIn ? (
-            <>
-              <Route path="/movie" element={<MovieScreen />} />
-              <Route path="/actor" element={<ActorScreen />} />
-              <Route path="/earnings" element={<Earnings />} />
-            </>
-          ) : (
-            <Route path="*" element={<Navigate to="/" replace />} />
-          )}
+          
+          
+             {isLogIn && <Route path="/movie" element={<MovieScreen />} />}
+             {isLogIn &&  <Route path="/actor" element={<ActorScreen />} />}
+             {isLogIn && <Route path="/earnings" element={<Earnings />} />}
+            
+        
         </Routes>
       </BrowserRouter>
     </>

@@ -80,6 +80,7 @@ export const EarningsList = () => {
                 <th>Title</th>
                 <th>Country</th>
                 <th>Revenue (Thousand)</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>

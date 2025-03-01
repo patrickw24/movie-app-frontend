@@ -111,7 +111,7 @@ export const AddEarningsForm = () => {
                             <label className="form-label mt-4">Revenue</label>
                             <input type="number" name="revenue" className="form-control" onChange={onChangeHandler} />
                         </div>
-  <button type="submit" className="btn btn-primary w-100">Submit</button>
+  <button type="submit" className="btn btn-primary w-100 mt-3">Submit</button>
 </form>
 <p className ="text-primary display-4" >{resultOperation}</p>
 </div>
