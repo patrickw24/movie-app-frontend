@@ -23,6 +23,7 @@ export const AddActorForm = () => {
     event.preventDefault();
     const baseUrl = import.meta.env.VITE_BASE_URL;
     const endpoint = "/actor";
+    const token = localStorage.getItem("movie-credential")
 
     const url = `${baseUrl}${endpoint}`;
 
@@ -35,6 +36,7 @@ export const AddActorForm = () => {
     const results = await fetch(url, {
       method: "POST",
       headers: {
+        'Authorization': token,
         "Content-Type": "application/json",
       },
       body: JSON.stringify(tmp),

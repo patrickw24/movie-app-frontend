@@ -37,6 +37,8 @@ function App() {
 
   }
 
+ 
+
   useEffect(()=>{
 
     token = window.localStorage.getItem('movie-credential')
@@ -50,7 +52,7 @@ function App() {
     {isLogIn ? <Menu/>: ""}
     <Routes>
       <Route path="/" element={<LogIn/>}/> 
-      { !isLogIn ? <Route path='/register' element={<Register />} /> : ""  } 
+       <Route path='/register' element={<Register />} />
       { isLogIn ? <Route path="/movie" element={<MovieScreen/>}/> : ""  }  
       { isLogIn ? <Route path="/actor" element={<ActorScreen/>}/> : ""  } 
       { isLogIn ?<Route path="/earnings" element={<Earnings/>}/> : ""  } 

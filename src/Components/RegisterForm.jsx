@@ -61,7 +61,7 @@ export const RegisterForm = () => {
 
     return (
         <>
-            <div className='parent'>
+            <div className='logForm'>
                 <div className="card bg-light mb-3" style={{ maxWidth: "400px" }}>
                     <div className="card-header">Log In</div>
                     <div className="card-body">
@@ -93,7 +93,7 @@ export const RegisterForm = () => {
                                     <button className='btn btn-primary w-100'>Create</button>
                                 </div>
                                 <div className='col'>
-                                    <button onClick={loginButton} type="button" className='btn btn-primary w-100'>Log In</button>
+                                    <button onClick={loginButton} type="button" className='btn btn-primary w-100'> Back to Log In</button>
                                 </div>
                             </div>
                         </form>

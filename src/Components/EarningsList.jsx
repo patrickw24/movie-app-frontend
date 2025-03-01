@@ -57,12 +57,18 @@ export const EarningsList = () => {
       
             }
 
+            setTimeout(() => {
+                window.location = "/earnings";
+              }, 5000);
            
         }
+       
 
         useEffect(()=>{
           getEarnings()
         }, [])
+
+      
 
   return (
     <>
